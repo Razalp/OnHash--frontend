@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Axios from '@/axious/instance';
 import { jwtDecode } from 'jwt-decode';
-import io from 'socket.io-client';
+
 import { useNavigate } from 'react-router-dom';
 
 const Notifications = () => {

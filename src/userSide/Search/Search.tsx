@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Axios from '@/axious/instance';
 import SideBar from '../SideBar/SideBar';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { jwtDecode } from 'jwt-decode';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -18,8 +16,7 @@ const Search = () => {
   if (!token) {
     return
   }
-  const decodedToken: any = jwtDecode(token);
-  const currentUserId = decodedToken.userId;
+
 
 
   const handleSearch = async () => {

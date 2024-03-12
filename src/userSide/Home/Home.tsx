@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,10 +18,11 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [postLikes, setPostLikes] = useState<any>({});
   const [isLiked,setIsLiked] =useState<boolean>()
+  console.log(isLiked)
   const [commentText, setCommentText] = useState('');
   const [commentData, SetCommentData] = useState<any>([])
   const [showCommentBox, setShowCommentBox] = useState<{ [postId: string]: boolean }>({});
-  const [error, setError] = useState('')
+
   const [likeData, SetLikeData] = useState<any[]>([]);
   const [openLikes, setOpenLikes] = useState(false);
   const [selectedReason, setSelectedReason] = useState('');
@@ -113,13 +114,13 @@ const Home = () => {
           SetLikeData(response.data.likes);
           SetCommentData(response.data.comments);
           setIsLiked(response.data.hasLiked)
-          const token = localStorage.getItem('accessToken');
+          // const token = localStorage.getItem('accessToken');
         } else {
           return null
         }
       } catch (error) {
         console.error(error);
-        setError('');
+
       }
     };
   
@@ -165,7 +166,8 @@ const Home = () => {
   
 
         const response = await Axios.post(`/api/user/likes/${postId}`, { currentUserId: userId });
-        const updatedPost = response.data;
+
+        console.log(response)
   
 
         const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');

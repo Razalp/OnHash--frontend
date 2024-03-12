@@ -17,7 +17,7 @@ const AudioLobby = () => {
         bio: '',
         profilePicture: '',
     });
-    const [showAudioLobby, setShowAudioLobby] = useState(false);
+
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
 
@@ -54,7 +54,7 @@ const AudioLobby = () => {
 
     const handleJoinRoom = useCallback(
         (data:any) => {
-            const { email, room } = data;
+            const { room } = data;
             navigate(`/audio-room/${room}`);
         },
         [navigate]

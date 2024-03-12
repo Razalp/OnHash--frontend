@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSocket } from '../../../Context/SocketProvider';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
-import { Button } from '@/components/ui/button';
+
 import Axios from '@/axious/instance';
 import { Video } from 'lucide-react';
 
@@ -55,7 +55,7 @@ const Lobby = () => {
 
     const handleJoinRoom = useCallback(
         (data:any) => {
-            const { email, room } = data;
+            const { room } = data;
             navigate(`/room/${room}`);
         },
         [navigate]

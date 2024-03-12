@@ -245,7 +245,8 @@ const UserProfile = () => {
         const decodedToken: any = jwtDecode(token);
         const userId = decodedToken.userId;
         const response = await Axios.post(`/api/user/likes/${postId}`, { currentUserId: userId });
-        const updatedPost = response.data;
+        console.log(response)
+
 
         // Update local storage with the like status
         const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');

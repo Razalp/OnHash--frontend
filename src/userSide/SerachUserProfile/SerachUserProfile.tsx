@@ -18,7 +18,7 @@ import AudioLobby from "../Chat/Audioscreen/AudioLobby";
 const SearchUserProfile = () => {
     const { userId } = useParams();
 
-    const [userData, setUserData] = useState<any[]>([]);
+
     const [userPosts, setUserPosts] = useState([]);
     const [isFollowing, setIsFollowing] = useState<boolean>();
     const [followers, setFollowers] = useState<number | undefined|any>();
@@ -35,13 +35,13 @@ const SearchUserProfile = () => {
         },
       });
      
-      const [isLiked, setIsLiked] = useState();
+
       const [commentText, setCommentText] = useState('');
       const [showCommentBox, setShowCommentBox] = useState(false);
       const [selectedReason, setSelectedReason] = useState("");
+      console.log(setSelectedReason)
       const [Serachuser,setSearchUser] =useState<any>([])
-      const [showEmojiPopup, setShowEmojiPopup] = useState(false);
-      const [error,setError] =useState('')
+
       const [likeData, SetLikeData] = useState<any[]>([]);
       const [commentData,SetCommentData] =useState<any>([])
       const [postLikes, setPostLikes] = useState<any>({});
@@ -76,11 +76,6 @@ const SearchUserProfile = () => {
     
 
 
-      const handleEmojiReaction = (emoji:any) => {
-        setCommentText((prevText) => prevText + emoji);
-        setShowEmojiPopup(false);
-      };
-    
 
 
 
@@ -175,7 +170,8 @@ const SearchUserProfile = () => {
       
    
             const response = await Axios.post(`/api/user/likes/${postId}`, { currentUserId: userId });
-            const updatedPost = response.data;
+            console.log(response)
+
       
    
             const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
@@ -225,9 +221,7 @@ const SearchUserProfile = () => {
         setSelectedPost({ post: null, user: { username: '', profilePicture: '' } });
       };
 
-      const handleGoToPost = () => {
-        navigate('/create')
-      }
+
     const openModal = () => {
       setIsOpen(true);
     };
@@ -258,7 +252,8 @@ const SearchUserProfile = () => {
         const fetchUserProfile = async () => {
             try {
                 const response = await Axios.get(`/api/user/serachUser-post/${userId}`);
-                setUserData(response.data);
+                console.log(response)
+
            
 
 
@@ -291,12 +286,7 @@ const SearchUserProfile = () => {
 
 
 
-    const getInitials = (name: any) => {
-        return name
-            .split(' ')
-            .map((word: any) => word.charAt(0))
-            .join('');
-    };
+
 
 
     const handleFollow = async () => {
@@ -370,11 +360,6 @@ const SearchUserProfile = () => {
 }, [userId]);
 
 
-    interface UserData {
-        follower: any[];
-        // following: any[];
-    }
-
     const getFollowers = async () => {
       try {
           const currentUserId = getCurrentUserId(); 
@@ -425,7 +410,7 @@ const SearchUserProfile = () => {
   
           SetLikeData(response.data.likes);
           SetCommentData(response.data.comments);   
-          setIsLiked(response.data.hasLiked)
+
           console.log(likeData)
           const token = localStorage.getItem('accessToken');
     
@@ -438,7 +423,6 @@ const SearchUserProfile = () => {
           }
         } catch (error) {
           console.error(error);
-          setError('');
         }
       };
   
