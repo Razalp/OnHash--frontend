@@ -1,0 +1,8 @@
+
+.fullbg{
+    color: white;
+    height: auto;
+  }
+  .drag-over {
+    border: 2px dashed #ffffff; 
+  }

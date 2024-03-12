@@ -1,0 +1,64 @@
+body {
+    font-family: 'Nunito', sans-serif;
+   /* background-color: rgb(22, 22, 22); */
+      margin: 0;
+      padding: 0;
+  height: 100%;
+
+    
+  }
+.fullbg-profile{
+  /* background-color: rgb(43, 40, 40); */
+  color: white;
+  height: auto;
+}
+.profile-container {
+    
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .rounded-profile {
+    border-radius: px;
+  }
+  .btn-black {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+.boxer{
+  border-radius: 0px;
+  background: linear-gradient(315deg, #121212, #151515);
+  box-shadow:  -5px -5px 10px #141414,
+               5px 5px 10px #141414;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.icon-button {
+  transition: color 0.3s ease-in-out;
+}
+
+.icon-button.text-white {
+  color: white;
+}
+
+.icon-button.text-red-600 {
+  color: #e53e3e; /* Red color */
+}
+
+
+
+ 

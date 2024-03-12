@@ -1,0 +1,15 @@
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: black;
+  color: white;
+
+}
+.post-image{
+  height: 500px;
+  width: 600px;
+  border: white;
+}
+
+
+

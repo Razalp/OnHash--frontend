@@ -1,0 +1,41 @@
+.fullbg{
+    background-color: black;
+    color: white;
+    height: 100vh;
+  }
+  .btn-container {
+    display: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-container.show {
+    display: block;
+  }
+  
+  .btn-black {
+    transition: all 0.3s ease; 
+  }
+  
+  .btn-black.open {
+    transform: translateX(-20px); 
+  }
+
+.table-row {
+  transition: background-color 0.3s ease;
+}
+
+.table-row:hover {
+  background-color: #4a5568; 
+}
+
+.button-container {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.table-row:hover .button-container {
+  opacity: 1;
+}
+
+
+
