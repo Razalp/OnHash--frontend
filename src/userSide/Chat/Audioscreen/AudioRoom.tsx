@@ -1,5 +1,5 @@
 import { useSocket } from '@/Context/SocketProvider'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ReactPlayer from "react-player";
 import peer from '../../../service/Peer'
 import { Button } from '@/components/ui/button';
@@ -71,7 +71,7 @@ const AudioRoom = () => {
     }, [myStream]);
 
     const handleCallAccepted = useCallback(
-        ({ from, ans }: { from: string; ans: any }) => {
+        ({ ans }: { from: string; ans: any }) => {
             peer.setLocalDescription(ans);
             console.log("Call Accepted!");
             sendStreams();

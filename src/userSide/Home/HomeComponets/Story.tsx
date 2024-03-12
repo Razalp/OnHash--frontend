@@ -2,7 +2,7 @@
 
 import Axios from "../../../axious/instance";
 import { jwtDecode } from "jwt-decode";
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,12 +17,13 @@ const Story = () => {
     bio: '',
     profilePicture: '',
   });
+  console.log(userData)
   const [content, setContent] = useState('');
   const [media, setMedia] = useState(null); 
   const [showModal, setShowModal] = useState(false); 
   const [fileError, setFileError] = useState<any|null>(''); 
   const [showImage, setShowImage] = useState(false);
-  const [selectedStoryImage, setSelectedStoryImage] = useState("");
+  // const [selectedStoryImage, setSelectedStoryImage] = useState("");
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [croppedImage, setCroppedImage] = useState(null); 
 
@@ -72,13 +73,13 @@ useEffect(()=>{
   const navigate = useNavigate();
 
 
-  const setShowmodalClose = () => {
-    setShowModal(false)
-  }
+  // const setShowmodalClose = () => {
+  //   setShowModal(false)
+  // }
 
-  const setModalopen = () => {
-    setShowImage(true)
-  }
+  // const setModalopen = () => {
+  //   setShowImage(true)
+  // }
 
   const setModalClose = () => {
     setShowImage(false)
@@ -147,6 +148,7 @@ useEffect(()=>{
       formData.append('croppedImage', croppedImage);
   
       const response = await Axios.post('/api/user/stories', formData);
+      console.log(response)
       setShowModal(false);
       setShowModal(false);
       fetchStories()
@@ -156,9 +158,9 @@ useEffect(()=>{
   };
   
 
-  const handleProfileImageClick = (imageUrl:any) => {
-    setSelectedStoryImage(imageUrl);
-  };
+  // const handleProfileImageClick = (imageUrl:any) => {
+  //   setSelectedStoryImage(imageUrl);
+  // };
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');

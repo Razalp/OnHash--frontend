@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Axios from '@/axious/instance';
 import {jwtDecode} from 'jwt-decode'; 
 import { ToastContainer, toast } from 'react-toastify';
@@ -40,6 +40,7 @@ const RandomUserSug = () => {
       } else {
         toast.error('Error following user');
       }
+      fetchRandomUsers()
     } catch (error) {
       console.error('Error following user:', error);
       toast.error('Error following user');

@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import Cropper from 'react-easy-crop';
 import { Button } from '@/components/ui/button';
 
-interface Media {
-  url: string;
-  width: number;
-  height: number;
-}
+
 
 interface Crop {
   x: number;
@@ -16,7 +12,7 @@ interface Crop {
 }
 
 interface CropImageProps {
-  media: Media;
+  media: any;
   onCropSubmit: (croppedImg: string) => void;
 }
 
