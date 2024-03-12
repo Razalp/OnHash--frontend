@@ -70,7 +70,7 @@ const Chat = () => {
                 }
             });
         }
-
+        fetchChatHistory()
         return () => {
             if (socket && selectedUser && selectedUser.userId) {
                 socket.emit('leaveRoom', `message-${selectedUser.userId}`);
