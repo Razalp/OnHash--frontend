@@ -64,8 +64,12 @@ const Chat = () => {
             socket.emit('joinRoom', `message-${selectedUser.userId}`);
 
             socket.on('chat message', (msg: any) => {
-                setMessages((prevMessages:string) => [msg, ...prevMessages]);
-        
+                if (!messages.some((message: any) => message.id === msg.id)) {
+                    setMessages((prevMessages: any) => [msg, ...prevMessages]);
+                }
+                if (selectedUser && selectedUser.userId) {
+                    setTimeout(fetchMessages, 1000);
+                }
             });
         }
   
@@ -102,7 +106,7 @@ const Chat = () => {
 
             await Axios.post('/api/user/send', formData);
 
-            // fetchMessages();
+            fetchMessages();
             // fetchChatHistory()
 
             setInputMessage('');
@@ -142,9 +146,9 @@ const Chat = () => {
    
     }, [selectedUser]);
 
-    useEffect(()=>{
-        fetchChatHistory()
-    },[])
+    useEffect(() => {
+        fetchChatHistory();
+    }, [selectedUser]);
 
     const fetchChatHistory = async () => {
         try {
