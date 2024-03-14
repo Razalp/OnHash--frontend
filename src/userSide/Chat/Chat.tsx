@@ -64,12 +64,8 @@ const Chat = () => {
             socket.emit('joinRoom', `message-${selectedUser.userId}`);
 
             socket.on('chat message', (msg: any) => {
-                if (!messages.some((message: any) => message.id === msg.id)) {
-                    setMessages((prevMessages: any) => [msg, ...prevMessages]);
-                }
-                if (selectedUser && selectedUser.userId) {
-                    setTimeout(fetchMessages, 1000);
-                }
+                setMessages((prevMessages:string) => [msg, ...prevMessages]);
+               
             });
         }
   
@@ -146,9 +142,9 @@ const Chat = () => {
    
     }, [selectedUser]);
 
-    useEffect(() => {
-        fetchChatHistory();
-    }, [selectedUser]);
+useEffect(() => {
+    fetchChatHistory();
+}, [selectedUser]);
 
     const fetchChatHistory = async () => {
         try {
