@@ -65,9 +65,7 @@ const Chat = () => {
 
             socket.on('chat message', (msg: any) => {
                 setMessages((prevMessages:string) => [msg, ...prevMessages]);
-                if (selectedUser && selectedUser.userId) {
-                    setTimeout(fetchMessages, 1000);
-                }
+        
             });
         }
   
