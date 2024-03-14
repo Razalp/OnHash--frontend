@@ -18,7 +18,7 @@ const Chat = () => {
     const [messages, setMessages] = useState<string|any>([]);
     const [senderId, setSenderId] = useState('');
     const [socket, setSocket] = useState<any>(null);
-    // const [chatHistory, setChatHistory] = useState<any>([]);
+    const [chatHistory, setChatHistory] = useState<any>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -144,29 +144,29 @@ const Chat = () => {
    
     }, [selectedUser]);
 
-// useEffect(() => {
-//     fetchChatHistory();
-// }, [selectedUser]);
 
-    // const fetchChatHistory = async () => {
-    //     try {
-    //         const token = localStorage.getItem('accessToken');
-    //         if (!token) {
-    //             return;
-    //         }
-    //         const decodedToken: any = jwtDecode(token);
-    //         const userId = decodedToken.userId;
-    //         const response = await Axios.post(`/api/user/chatHistories/${userId}`)
-    //         setChatHistory(response.data);
 
-    //         socket.on('newChatHistory', (newChatHistory:string) => {
-    //             setChatHistory(newChatHistory);
-    //         });
+useEffect(() => {
+    fetchChatHistory();
+}, []);
 
-    //     } catch (error) {
-    //         console.error('Error fetching chat history:', error);
-    //     }
-    // };
+    const fetchChatHistory = async () => {
+        try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                return;
+            }
+            const decodedToken: any = jwtDecode(token);
+            const userId = decodedToken.userId;
+            const response = await Axios.post(`/api/user/chatHistories/${userId}`)
+            setChatHistory(response.data);
+
+       
+
+        } catch (error) {
+            console.error('Error fetching chat history:', error);
+        }
+    };
 
 
 
