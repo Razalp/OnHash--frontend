@@ -229,7 +229,7 @@ useEffect(() => {
                                 />
 
                                 <div className="bg-gray-100 flex-1 overflow-auto">
-                                {/* {chatHistory.map((chat: { _id: string, receiver: { profilePicture: string, username: string }, message: string }) => (
+                                {chatHistory.map((chat: { _id: string, receiver: { profilePicture: string, username: string }, message: string }) => (
     <div className='flex items-center mt-2 ml-2' key={chat._id}>
         <img
             src={`${import.meta.env.VITE_UPLOAD_URL}${chat.receiver.profilePicture}`}
@@ -242,7 +242,7 @@ useEffect(() => {
             <p className='text-sm text-gray-600'>{chat.message}</p>
         </div>
     </div>
-))} */}
+))}
 
                                 </div>
                             </div>
