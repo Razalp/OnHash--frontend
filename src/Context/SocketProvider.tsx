@@ -13,7 +13,7 @@ interface SocketProviderProps {
 }
 
 export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
-    const socket = useMemo(() => io('localhost:3000'), []);
+    const socket = useMemo(() => io(`${import.meta.env.VITE_REACT_APP_BASE_URL}`), []);
 
     return (
         <SocketContext.Provider value={socket}>
