@@ -29,7 +29,7 @@ const Login = () => {
         }
         
 
-        const response = await axios.post('http://localhost:3000/api/user/logIn', {
+        const response = await axios.post('https://onhash-backend.onrender.com/api/user/logIn', {
           email,
           password,
         });

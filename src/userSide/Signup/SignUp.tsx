@@ -59,7 +59,7 @@ const SignUp = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:3000/api/user/signIn', {
+      const response = await axios.post('https://onhash-backend.onrender.com/api/user/signIn', {
         username: name,
         email,
         password,
@@ -88,7 +88,7 @@ const SignUp = () => {
     try {
       setResendDisabled(true);
       startTimer();
-      await axios.post('http://localhost:3000/api/user/resendotp', {
+      await axios.post('https://onhash-backend.onrender.com/api/user/resendotp', {
         email,
       });
 
@@ -103,7 +103,7 @@ const SignUp = () => {
 
   const handleOtpVerification = async () => {
     try {
-      const otpVerificationResponse = await axios.post('http://localhost:3000/api/user/verify-otp', {
+      const otpVerificationResponse = await axios.post('https://onhash-backend.onrender.com/api/user/verify-otp', {
         email,
         otp,
       });

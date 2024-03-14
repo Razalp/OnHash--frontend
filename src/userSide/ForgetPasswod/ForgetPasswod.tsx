@@ -13,7 +13,7 @@ const ForgetPassword = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/api/user/forgot-password', { email });
+      const response = await axios.post('https://onhash-backend.onrender.com/api/user/forgot-password', { email });
 
       if (response.status === 200) {
         setModalIsOpen(true);
@@ -29,7 +29,7 @@ const ForgetPassword = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/api/user/reset-password', { email, otp, newPassword });
+      const response = await axios.post('https://onhash-backend.onrender.com/api/user/reset-password', { email, otp, newPassword });
 
       if (response.status === 200) {
         setModalIsOpen(false);
