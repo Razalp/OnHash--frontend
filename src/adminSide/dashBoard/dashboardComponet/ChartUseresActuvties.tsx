@@ -8,14 +8,16 @@ interface ChartData {
   id: string;
 }
 
-const PieChart = ({ data }: { data: any }) => {
+const ChartUseresActuvties = ({ data }: { data: any }) => {
   const [chartOptions, setChartOptions] = useState({
     data: [] as ChartData[], 
     title: {
-      text: 'Users status',
+      text: 'Users actvties',
+      color: '#ffffff',
     },
     background: {
-      fill: '#78A083',
+      fill: '#B0C5A4',
+  
     },
     series: [{
       type: 'pie',
@@ -24,6 +26,7 @@ const PieChart = ({ data }: { data: any }) => {
       calloutLabelKey: 'status',
       innerRadiusRatio: 0.7,
       fills: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'],
+      
     } as AgPieSeriesOptions], 
   });
 
@@ -46,9 +49,8 @@ const PieChart = ({ data }: { data: any }) => {
         <AgChartsReact options={chartOptions} />
 
       </div>
-
     </div>
   );
 };
 
-export default PieChart;
+export default ChartUseresActuvties;

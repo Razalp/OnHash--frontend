@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-
 import Axios from "../../axious/instance";
 import AdminSideBar from "../AdminSideBar/AdminSideBar";
 import Chart from "./dashboardComponet/Chart"; 
-import { BarChart } from "lucide-react";
+import ChartUseresActuvties from "./dashboardComponet/ChartUseresActuvties";
+import MonthlyUsers from "./dashboardComponet/MonthlyUsers";
+
+
 
 
 
@@ -21,6 +23,8 @@ const Dashboard = () => {
         commentCount: 0,
         followCount: 0,
       });
+
+      const [monthlyUsers, setMonthlyUsers] = useState([]);
 
     useEffect(() => {
         const fetchUserCounts = async () => {
@@ -49,6 +53,19 @@ const Dashboard = () => {
         fetchUserActivities();
       }, []);
 
+      useEffect(() => {
+        const fetchMonthlyUsers = async () => {
+          try {
+            const response = await Axios.get('/api/user/monthly-users');
+            setMonthlyUsers(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchMonthlyUsers();
+      }, []);
+
     return (
         <div className="bg-black">
             <div>
@@ -56,18 +73,24 @@ const Dashboard = () => {
             </div>
            
                 <ul className="flex flex-wrap ml-20">
+                    
                     <div>
                         <Chart data={userCounts}   /> 
                     </div>
                     <div>
-                    <Chart data={userActivities}   /> 
+                    <ChartUseresActuvties data={userActivities}/>
                     </div>
+                    </ul>
                     <div>
-                        <BarChart></BarChart>
+                    <MonthlyUsers data={monthlyUsers}/>
+                    </div>
+                    
+                    <div>
+               
                     </div>
                     
                  
-                </ul>
+               
             </div>
       
     );

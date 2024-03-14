@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SideBar from "../SideBar/SideBar";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faComment, faFlag, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faComment, faFlag } from '@fortawesome/free-solid-svg-icons';
 import Axios from "@/axious/instance";
 import { jwtDecode } from "jwt-decode";
 import Story from "./HomeComponets/Story";
@@ -300,7 +300,7 @@ const Home = () => {
                         style={{ fontSize: '26px' }}
                       />
                     </div>
-                      <FontAwesomeIcon icon={faUserCircle} className="icon" style={{ fontSize: '26px' }} />
+                      
                     </div>
                   </div>
                   <div>
