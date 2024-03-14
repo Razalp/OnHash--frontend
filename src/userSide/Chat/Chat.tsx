@@ -18,7 +18,7 @@ const Chat = () => {
     const [messages, setMessages] = useState<string|any>([]);
     const [senderId, setSenderId] = useState('');
     const [socket, setSocket] = useState<any>(null);
-    // const [chatHistory, setChatHistory] = useState<any>([]);
+    const [chatHistory, setChatHistory] = useState<any>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -150,24 +150,24 @@ const Chat = () => {
     
 
 
-    // const fetchChatHistory = async () => {
-    //     try {
-    //         const token = localStorage.getItem('accessToken');
-    //         if (!token) {
-    //             return;
-    //         }
-    //         const decodedToken: any = jwtDecode(token);
-    //         const userId = decodedToken.userId;
-    //         const response = await Axios.post(`/api/user/chatHistories/${userId}`)
-    //         setChatHistory(response.data);
+    const fetchChatHistory = async () => {
+        try {
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                return;
+            }
+            const decodedToken: any = jwtDecode(token);
+            const userId = decodedToken.userId;
+            const response = await Axios.post(`/api/user/chatHistories/${userId}`)
+            setChatHistory(response.data);
 
        
 
-    //     } catch (error) {
-    //         console.error('Error fetching chat history:', error);
-    //     }
-    // };
-    // fetchChatHistory();
+        } catch (error) {
+            console.error('Error fetching chat history:', error);
+        }
+    };
+
 
 
 
@@ -179,6 +179,7 @@ const Chat = () => {
         try {
             const response = await Axios.get(`/api/user/searchUser?query=${searchQuery}`);
             setSearchResults(response.data);
+            fetchChatHistory()
         } catch (error) {
             console.error('Error fetching search results:', error);
         }
@@ -230,8 +231,8 @@ const Chat = () => {
 
                                 <div className="bg-gray-100 flex-1 overflow-auto">
 
-                                    
-                                {/* {chatHistory.map((chat: { _id: string, receiver: { profilePicture: string, username: string }, message: string }) => (
+
+                                 {chatHistory.map((chat: { _id: string, receiver: { profilePicture: string, username: string }, message: string }) => (
     <div className='flex items-center mt-2 ml-2' key={chat._id}>
         <img
             src={`${import.meta.env.VITE_UPLOAD_URL}${chat.receiver.profilePicture}`}
@@ -244,7 +245,7 @@ const Chat = () => {
             <p className='text-sm text-gray-600'>{chat.message}</p>
         </div>
     </div>
-))} */}
+))} 
 
                                 </div>
                             </div>
