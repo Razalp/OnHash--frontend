@@ -137,12 +137,12 @@ const Chat = () => {
         }
     };
 
-    useEffect(() => {
-        if (selectedUser && selectedUser.userId) {
-            fetchMessages();
-        }
+    // useEffect(() => {
+    //     if (selectedUser && selectedUser.userId) {
+    //         fetchMessages();
+    //     }
    
-    }, [selectedUser]);
+    // }, [selectedUser]);
 
     useEffect(()=>{
         fetchChatHistory()
