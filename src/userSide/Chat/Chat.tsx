@@ -105,7 +105,7 @@ const Chat = () => {
             await Axios.post('/api/user/send', formData);
 
             fetchMessages();
-            fetchChatHistory()
+            // fetchChatHistory()
 
             setInputMessage('');
             setSelectedImage(null);
@@ -143,25 +143,25 @@ const Chat = () => {
         }
     }, [selectedUser]);
 
-    const fetchChatHistory = async () => {
-        try {
-            const token = localStorage.getItem('accessToken');
-            if (!token) {
-                return;
-            }
-            const decodedToken: any = jwtDecode(token);
-            const userId = decodedToken.userId;
-            const response = await Axios.post(`/api/user/chatHistories/${userId}`)
-            setChatHistory(response.data);
+    // const fetchChatHistory = async () => {
+    //     try {
+    //         const token = localStorage.getItem('accessToken');
+    //         if (!token) {
+    //             return;
+    //         }
+    //         const decodedToken: any = jwtDecode(token);
+    //         const userId = decodedToken.userId;
+    //         const response = await Axios.post(`/api/user/chatHistories/${userId}`)
+    //         setChatHistory(response.data);
 
-            socket.on('newChatHistory', (newChatHistory:string) => {
-                setChatHistory(newChatHistory);
-            });
+    //         socket.on('newChatHistory', (newChatHistory:string) => {
+    //             setChatHistory(newChatHistory);
+    //         });
 
-        } catch (error) {
-            console.error('Error fetching chat history:', error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('Error fetching chat history:', error);
+    //     }
+    // };
 
 
 
