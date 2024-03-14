@@ -18,7 +18,7 @@ const Chat = () => {
     const [messages, setMessages] = useState<string|any>([]);
     const [senderId, setSenderId] = useState('');
     const [socket, setSocket] = useState<any>(null);
-    const [chatHistory, setChatHistory] = useState<any>([]);
+    // const [chatHistory, setChatHistory] = useState<any>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -128,7 +128,7 @@ const Chat = () => {
             const response = await Axios.get(`/api/user/${currentUserId}/${receiverId}`);
             const messages = response.data;
             setMessages(messages);
-            setChatHistory('')
+            // setChatHistory('')
   
         } catch (error) {
             console.error('Error fetching messages:', error);
@@ -227,7 +227,7 @@ const Chat = () => {
                                 />
 
                                 <div className="bg-gray-100 flex-1 overflow-auto">
-                                {chatHistory.map((chat: { _id: string, receiver: { profilePicture: string, username: string }, message: string }) => (
+                                {/* {chatHistory.map((chat: { _id: string, receiver: { profilePicture: string, username: string }, message: string }) => (
     <div className='flex items-center mt-2 ml-2' key={chat._id}>
         <img
             src={`${import.meta.env.VITE_UPLOAD_URL}${chat.receiver.profilePicture}`}
@@ -240,7 +240,7 @@ const Chat = () => {
             <p className='text-sm text-gray-600'>{chat.message}</p>
         </div>
     </div>
-))}
+))} */}
 
                                 </div>
                             </div>
