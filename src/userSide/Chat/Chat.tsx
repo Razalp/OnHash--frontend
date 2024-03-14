@@ -128,7 +128,7 @@ const Chat = () => {
             const response = await Axios.get(`/api/user/${currentUserId}/${receiverId}`);
             const messages = response.data;
             setMessages(messages);
-      
+            setChatHistory('')
   
         } catch (error) {
             console.error('Error fetching messages:', error);
@@ -142,29 +142,29 @@ const Chat = () => {
    
     }, [selectedUser]);
 
-useEffect(() => {
-    fetchChatHistory();
-}, [selectedUser]);
+// useEffect(() => {
+//     fetchChatHistory();
+// }, [selectedUser]);
 
-    const fetchChatHistory = async () => {
-        try {
-            const token = localStorage.getItem('accessToken');
-            if (!token) {
-                return;
-            }
-            const decodedToken: any = jwtDecode(token);
-            const userId = decodedToken.userId;
-            const response = await Axios.post(`/api/user/chatHistories/${userId}`)
-            setChatHistory(response.data);
+    // const fetchChatHistory = async () => {
+    //     try {
+    //         const token = localStorage.getItem('accessToken');
+    //         if (!token) {
+    //             return;
+    //         }
+    //         const decodedToken: any = jwtDecode(token);
+    //         const userId = decodedToken.userId;
+    //         const response = await Axios.post(`/api/user/chatHistories/${userId}`)
+    //         setChatHistory(response.data);
 
-            socket.on('newChatHistory', (newChatHistory:string) => {
-                setChatHistory(newChatHistory);
-            });
+    //         socket.on('newChatHistory', (newChatHistory:string) => {
+    //             setChatHistory(newChatHistory);
+    //         });
 
-        } catch (error) {
-            console.error('Error fetching chat history:', error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('Error fetching chat history:', error);
+    //     }
+    // };
 
 
 
