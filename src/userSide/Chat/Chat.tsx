@@ -145,7 +145,7 @@ const Chat = () => {
     }, [selectedUser]);
 
     useEffect(()=>{
-
+        fetchChatHistory()
     },[])
 
     const fetchChatHistory = async () => {
