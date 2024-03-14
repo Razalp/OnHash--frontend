@@ -105,7 +105,7 @@ const Chat = () => {
             await Axios.post('/api/user/send', formData);
 
             fetchMessages();
-            
+            fetchChatHistory()
 
             setInputMessage('');
             setSelectedImage(null);
