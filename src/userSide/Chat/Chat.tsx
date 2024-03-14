@@ -146,9 +146,9 @@ const Chat = () => {
 
 
 
-useEffect(() => {
-    fetchChatHistory();
-}, []);
+
+    
+
 
     const fetchChatHistory = async () => {
         try {
@@ -167,7 +167,7 @@ useEffect(() => {
             console.error('Error fetching chat history:', error);
         }
     };
-
+    fetchChatHistory();
 
 
 
