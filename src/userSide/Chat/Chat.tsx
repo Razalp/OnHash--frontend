@@ -65,6 +65,9 @@ const Chat = () => {
 
             socket.on('chat message', (msg: any) => {
                 setMessages((prevMessages:string) => [msg, ...prevMessages]);
+                if (selectedUser && selectedUser.userId) {
+                    setTimeout(fetchMessages, 1000);
+                }
             });
         }
   
@@ -101,7 +104,7 @@ const Chat = () => {
 
             await Axios.post('/api/user/send', formData);
 
-            fetchMessages();
+            // fetchMessages();
             // fetchChatHistory()
 
             setInputMessage('');
@@ -134,12 +137,12 @@ const Chat = () => {
         }
     };
 
-    // useEffect(() => {
-    //     if (selectedUser && selectedUser.userId) {
-    //         fetchMessages();
-    //     }
+    useEffect(() => {
+        if (selectedUser && selectedUser.userId) {
+            fetchMessages();
+        }
    
-    // }, [selectedUser]);
+    }, [selectedUser]);
 
     useEffect(()=>{
         fetchChatHistory()
