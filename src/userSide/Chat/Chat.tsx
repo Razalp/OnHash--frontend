@@ -141,8 +141,12 @@ const Chat = () => {
         if (selectedUser && selectedUser.userId) {
             fetchMessages();
         }
-        fetchChatHistory()
+   
     }, [selectedUser]);
+
+    useEffect(()=>{
+
+    },[])
 
     const fetchChatHistory = async () => {
         try {
