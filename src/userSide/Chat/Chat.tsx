@@ -149,7 +149,7 @@ const Chat = () => {
 
     
 
-
+useEffect(()=>{
     const fetchChatHistory = async () => {
         try {
             const token = localStorage.getItem('accessToken');
@@ -167,6 +167,9 @@ const Chat = () => {
             console.error('Error fetching chat history:', error);
         }
     };
+    fetchChatHistory()
+},[])
+    
 
 
 
@@ -179,7 +182,7 @@ const Chat = () => {
         try {
             const response = await Axios.get(`/api/user/searchUser?query=${searchQuery}`);
             setSearchResults(response.data);
-            fetchChatHistory()
+ 
         } catch (error) {
             console.error('Error fetching search results:', error);
         }
