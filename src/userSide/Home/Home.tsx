@@ -305,7 +305,6 @@ const Home = () => {
                   </div>
                   <div>
                   <h1 className="text-white mr-6">
-                  {new Date(posts?.createdAt).toLocaleTimeString()}
                     </h1>
                   </div>
                   <div>
