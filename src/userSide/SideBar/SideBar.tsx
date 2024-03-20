@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faSearch, faEnvelope, faBell, faPlusCircle, faUser, faSignOutAlt, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Notifications from '../Notifications/Notifications';
 
+
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const navigate = useNavigate();
+  const navigate=useNavigate()
+
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);

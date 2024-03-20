@@ -36,14 +36,14 @@ function App() {
   
 
   return (
-    <>
+ 
       <Routes>
         (
-          <>
+     
          
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/log-in' element={<Login />} />
-          </>
+        
         )
 
 
@@ -65,19 +65,19 @@ function App() {
    
 
         
-          <>
+    
             <Route path='/profile' element={<UserProfile />} />
             <Route path='/create' element={<Createpost />} />
             <Route path='/dashboard' element={<ProtectedRoute allowedRole={true}><DashBoard/></ProtectedRoute>} />
             <Route path="/userManagement" element={<ProtectedRoute allowedRole={true}><UserManagement /></ProtectedRoute>}/>
             <Route path="/Report" element={<ProtectedRoute allowedRole={true}><ReportPage /></ProtectedRoute>}/>
    
-          </>
+     
         
 
         <Route path='*' element={<ErrorPage />} />
       </Routes>
-    </>
+  
   );
 }
 

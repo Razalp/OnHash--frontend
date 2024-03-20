@@ -13,7 +13,7 @@ const MonthlyUsers = ({ data }: { data: MonthlyUserData[] }) => {
     title: {
       text: 'Monthly users',
     },
-    width:1199,
+    width:970,
     background: {
       fill: '#000000', // Black background color
     },

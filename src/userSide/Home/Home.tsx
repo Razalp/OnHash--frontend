@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faComment, faFlag } from '@fortawesome/free-solid-svg-icons';
 import Axios from "@/axious/instance";
 import { jwtDecode } from "jwt-decode";
-import Story from "./HomeComponets/Story";
+// import Story from "./HomeComponets/Story";
 import LazyLoad from 'react-lazyload';
 import { Button, Spinner } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import RandomUserSug from "./HomeComponets/RandomUserSug";
 import LoadingSpinner from "./LoadingSpinner";
-
+import { Send} from 'lucide-react';
 const Home = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<any>([]);
@@ -213,6 +213,9 @@ const Home = () => {
 
           setCommentText('');
         }
+        if (!commentData[postId]) {
+          await fetchPostDetails(postId);
+        }
       } else {
 
       }
@@ -231,16 +234,19 @@ const Home = () => {
   };
 
 
+  
+
+
 
   return (
     <div className={`bg-black ${posts && posts.length > 0 ? '' : 'min-h-screen'}`}> 
       <SideBar />
-      <Story />
+      {/* <Story /> */}
       <RandomUserSug/>
       
       <div className="flex justify-center items-center " >
         
-        <div className="grid gap-4 p-4 ">
+        <div className="grid gap-4 ">
        
           {loading ? (
             <LoadingSpinner /> 
@@ -259,17 +265,17 @@ const Home = () => {
                     <h1 className="text-sm font-semibold">{post.user.username}</h1>
                   </div>
                   <div className="flex justify-center mb-4">
-                    <LazyLoad height={200} offset={100}>
+                    <LazyLoad>
                       <img
                         src={`${import.meta.env.VITE_UPLOAD_URL}${post.image}`}
                         alt="Post"
                         className="post-image rounded-md object-cover"
-                        style={{ width: "440px", height: "470px" }}
+                        style={{ width: "400px", height: "470px" }}
                       />
                     </LazyLoad>
                   </div>
                   <h1 className="text-xs" onClick={() => handleOpenLikes(post._id)}>Likes </h1>
-
+                  <br />
                   <div className="post-icons flex justify-between">
                     <div className="flex items-center space-x-3">
                       
@@ -310,40 +316,43 @@ const Home = () => {
                   <div>
                   {showCommentBox[post._id] && (
                     <div>
+                      <br />
                       <form onSubmit={(e) => handleComment(post._id, e)}>
-                        <input
-                          placeholder="Add a comment..."
-                          value={commentText}
-                          onChange={(e) => setCommentText(e.target.value)}
-                          className="w-1/2 p-2 mt-2 rounded-md border border-gray-300 text-black"
-                        />
-                        <button type="submit" className="ml-1 w-1">
-                          ↩️
-                        </button>
+                      
+  <input
+    placeholder="Add a comment..."
+    value={commentText}
+    onChange={(e) => setCommentText(e.target.value)}
+    className="w-96 p-2 rounded-md bg-slate-900 focus:border-blue-500"
+  />
+  <Button variant={"outline"} type="submit" className="px-3 ml-1">
+    <Send />
+  </Button>
+
                       </form>
                       <div className="comments-container">
                         <h3 className="text-white mt-4">Comments:</h3>
                         <br />
-                        <ul className="list-none p-0">
-                        {commentData.map((comment:any, index:any) => (
-                            <li key={index} className="text-white space-y-4">
-                              <div className="flex justify-between ">
-                                <div className="flex">
-                                  <img
-                                    src={`${import.meta.env.VITE_UPLOAD_URL}${comment?.user?.profilePicture}`}
-                                    alt="User Profile"
-                                    className="w-8 h-8 rounded-full mr-2"
-                                  />
-                                  <span>{comment?.user?.username}</span>
-                                </div>
-                                <p>{comment?.text}</p>
-                                <p className="text-gray-500">
-                                  {comment?.createdAt ? new Date(comment.createdAt).toLocaleString() : ""}
-                                </p>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
+                        <ul className="space-y-1">
+  {commentData.map((comment:any, index:any) => (
+    <li key={index} className=" p-2 rounded-lg">
+      <div className="flex items-start justify-between">
+        <div className="flex items-center">
+          <img
+            src={`${import.meta.env.VITE_UPLOAD_URL}${comment?.user?.profilePicture}`}
+            alt="User Profile"
+            className="w-10 h-10 rounded-full mr-4 object-cover"
+          />
+          <div>
+            <span className="font-semibold text-white">{comment?.user?.username}</span>
+            <p className="text-gray-300">{comment?.text}</p>
+          </div>
+        </div>
+        <p className="text-gray-500 text-sm">{comment?.createdAt ? new Date(comment.createdAt).toLocaleString() : ""}</p>
+      </div>
+    </li>
+  ))}
+</ul>
                       </div>
                     </div>
                   )}

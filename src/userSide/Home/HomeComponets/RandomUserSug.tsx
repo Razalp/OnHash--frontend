@@ -11,16 +11,19 @@ const RandomUserSug = () => {
   const [isFollowing, setIsFollowing] = useState<{ [key: string]: boolean }>({});
   const navigate=useNavigate()
 
+useEffect(()=>{
+  const fetchRandomUsers = async () => {
+    try {   
+      const response = await Axios.get('/api/user/random-users');
+      setRandomUsers(response.data);
+      
+    } catch (error) {
+      console.error('Error fetching random users:', error);
+    }
+  };
+  fetchRandomUsers()
+},[])
 
-    const fetchRandomUsers = async () => {
-      try {   
-        const response = await Axios.get('/api/user/random-users');
-        setRandomUsers(response.data);
-        
-      } catch (error) {
-        console.error('Error fetching random users:', error);
-      }
-    };
 
 
   
@@ -40,7 +43,7 @@ const RandomUserSug = () => {
       } else {
         toast.error('Error following user');
       }
-      fetchRandomUsers()
+  
     } catch (error) {
       console.error('Error following user:', error);
       toast.error('Error following user');
@@ -88,27 +91,26 @@ const RandomUserSug = () => {
   return (
     <div className="flex justify-center ml-16 mr-20">
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
-      <div className="grid grid-cols-3 gap-4">
-        {randomUsers.map((user:any) => (
-              <Link
-              to={`/SerachUserProfile/${user._id}`}
-              className=""
-            >
-              
-          <div key={user._id} className="card bg-gray-950 rounded-lg p-4 shadow-md ">
-            <img
-              src={`${import.meta.env.VITE_UPLOAD_URL}${user.profilePicture}`}
-              alt={user.username}
-              className="w-16 h-16 rounded-full mx-auto object-cover"
-            />
-            <h3 className="text-sm font-semibold text-center text-white mt-1">{user.username}</h3>
-            {isFollowing[user._id] ? (
-  <Button variant="ghost" className='text-xs mt-1' onClick={() => handleUnfollow(user._id)}>UNFOLLOW</Button>
-) : (
-  <Button variant="outline" className='text-xs mt-1' onClick={() => handleFollow(user._id)}>FOLLOW</Button>
-)}
-
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {randomUsers.map((user: any) => (
+          <Link
+            to={`/SerachUserProfile/${user._id}`}
+            className=""
+            key={user._id}
+          >
+            <div className="card bg-gray-950 rounded-lg p-4 shadow-md">
+              <img
+                src={`${import.meta.env.VITE_UPLOAD_URL}${user.profilePicture}`}
+                alt={user.username}
+                className="w-16 h-16 rounded-full mx-auto object-cover"
+              />
+              <h3 className="text-sm font-semibold text-center text-white mt-1">{user.username}</h3>
+              {isFollowing[user._id] ? (
+                <Button variant="ghost" className="text-xs mt-1" onClick={() => handleUnfollow(user._id)}>UNFOLLOW</Button>
+              ) : (
+                <Button variant="outline" className="text-xs mt-1" onClick={() => handleFollow(user._id)}>FOLLOW</Button>
+              )}
+            </div>
           </Link>
         ))}
       </div>

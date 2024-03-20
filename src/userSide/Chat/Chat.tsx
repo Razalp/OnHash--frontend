@@ -215,12 +215,13 @@ const Chat = () => {
       }, []);
 
     return (
-        <div>
-            <SideBar />
-            <div className='bg-black border-black'>
-                <div className="w-full h-32 bg-black  border-black"></div>
-
-                <div className="container mx-auto" style={{ marginTop: '-128px' }}>
+    
+    
+            <div className='bg-black'>
+                <SideBar></SideBar>
+          
+      
+                <div className="container mx-auto">
                     <div className="py-6 h-screen">
                         <div className="flex border border-grey rounded shadow-lg h-full">
                             <div className="w-1/4 border flex flex-col">
@@ -347,14 +348,14 @@ const Chat = () => {
                                 </div>
                             ) : (
                                 <div className='border border-black'>
-                                    <img src={Online} className='w-full h-full ml-16' alt="" />
+                                    <img src={Online} className='w-full h-full' alt="" />
                                 </div>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+     
     );
 }
 

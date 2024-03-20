@@ -66,10 +66,10 @@ const Notifications = () => {
     <div className="relative">
       <button onClick={openModal} className="hover:text-blue-200 text-sm">Notifications</button>
       {isModalOpen && (
-        <div className="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50">
-          <div className="w-[400px] p-6 bg-white border border-gray-300 shadow-lg rounded-lg relative">
+        <div className="fixed inset-0 flex justify-center items-center bg-opacity-50">
+          <div className="w-[400px] p-6  bg-slate-950 border shadow-lg rounded-lg relative">
             <h2 className="text-3xl font-bold mb-4 text-gray-800">Notifications</h2>
-            <button onClick={closeModal} className="absolute top-8 right-8 px-2 text-black">X</button>
+            <button onClick={closeModal} className="absolute top-8 right-8 px-2 ">X</button>
             <br />
             <div>
               {notifications.length > 0 ? (

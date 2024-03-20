@@ -101,7 +101,7 @@ const UserManagement = () => {
   return (
     <>
       <AdminSideBar />
-      <div className='fullbg' style={{height:'100vh'}}>
+      <div className='bg-black'>
       <div className='flex justify-end'>
      
     <input

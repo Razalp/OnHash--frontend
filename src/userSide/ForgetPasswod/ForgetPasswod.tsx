@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ForgetPassword = () => {
@@ -8,7 +8,7 @@ const ForgetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalError, setModalError] = useState('');
-
+  const navigate=useNavigate()
   const handleSubmit = async (e:any) => {
     e.preventDefault();
 
@@ -20,6 +20,7 @@ const ForgetPassword = () => {
       } else {
         console.error(response.data.error);
       }
+      navigate('/log-in')
     } catch (error) {
       console.error('Error:', error);
     }

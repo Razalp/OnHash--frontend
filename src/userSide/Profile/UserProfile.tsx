@@ -108,7 +108,7 @@ const UserProfile = () => {
   
     }
   };
-  
+
 
 
 
@@ -137,7 +137,7 @@ const UserProfile = () => {
           return;
         }
 
-        const decodedToken: any = jwtDecode(token);
+        const decodedToken:any = jwtDecode(token);
         const userId = decodedToken.userId;
 
         if (postId != null) {
@@ -264,7 +264,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    // Read liked posts from local storage on mount
+
     const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
     setPostLikes(likedPosts);
   }, []);
@@ -381,33 +381,55 @@ const UserProfile = () => {
 
     setShowModal(false);
   };
+
+  useEffect(()=>{
+    fetchUserData()
+  },[handleModalSave,handleDeleteProfilePicture])
   
 
-  useEffect(() => {
+  const fetchUserData = async () => {
     const token = localStorage.getItem('accessToken');
-
     try {
       if (token) {
-        const decodedToken: any = jwtDecode(token);
+        const decodedToken:any = jwtDecode(token);
         const userId = decodedToken.userId;
-
-        const fetchUserData = async () => {
-          try {
-            const response = await Axios.get(`/api/user/get-profile/${userId}`);
-            setUserData(response.data);
-          } catch (error) {
-            console.error('Error fetching user data:', error);
-            toast.error('Error fetching user data');
-          }
-        };
-
-        fetchUserData();
+        const response = await Axios.get(`/api/user/get-profile/${userId}`);
+        setUserData(response.data);
       }
     } catch (error) {
-      console.error('Error decoding token:', error);
-      toast.error('Error decoding token');
+      console.error('Error fetching user data:', error);
+      toast.error('Error fetching user data');
     }
-  }, []);
+  };
+  useEffect(()=>{
+    fetchUserData()
+  },[])
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('accessToken');
+
+  //   try {
+  //     if (token) {
+  //       const decodedToken: any = jwtDecode(token);
+  //       const userId = decodedToken.userId;
+
+  //       const fetchUserData = async () => {
+  //         try {
+  //           const response = await Axios.get(`/api/user/get-profile/${userId}`);
+  //           setUserData(response.data);
+  //         } catch (error) {
+  //           console.error('Error fetching user data:', error);
+  //           toast.error('Error fetching user data');
+  //         }
+  //       };
+
+  //       fetchUserData();
+  //     }
+  //   } catch (error) {
+  //     console.error('Error decoding token:', error);
+  //     toast.error('Error decoding token');
+  //   }
+  // }, []);
 
   const getInitials = (name: any) => {
     return name
