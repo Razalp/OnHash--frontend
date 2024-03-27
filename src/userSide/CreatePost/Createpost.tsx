@@ -196,11 +196,14 @@ const Createpost = () => {
   
 
   const handleCreatePost = async () => {
-    if (!previewImage || !caption || uploading) { 
+    if (!previewImage || !caption ) { 
       toast.error('Please select an image and enter a caption');
       return;
     }
-
+    if(uploading){
+      toast.error('processing');
+      return;
+    }
     setUploading(true); 
 
     const filteredImage = await applyFiltersToImage(previewImage);
