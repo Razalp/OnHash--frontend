@@ -20,6 +20,7 @@ const Createpost = () => {
   const [brightness, setBrightness] = useState<number>(100);
   const [contrast, setContrast] = useState<number>(100);
   const [saturate, setSaturate] = useState<number>(100);
+  const [uploading, setUploading] = useState<boolean>(false);
 
 
 
@@ -195,10 +196,12 @@ const Createpost = () => {
   
 
   const handleCreatePost = async () => {
-    if (!previewImage || !caption) {
+    if (!previewImage || !caption || uploading) { 
       toast.error('Please select an image and enter a caption');
       return;
     }
+
+    setUploading(true); 
 
     const filteredImage = await applyFiltersToImage(previewImage);
 
@@ -225,6 +228,8 @@ const Createpost = () => {
     } catch (error) {
       console.error('Error uploading post:', error);
       toast.error('Error uploading post');
+    } finally {
+      setUploading(false); 
     }
   };
 
